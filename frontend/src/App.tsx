@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import HelmetDetection from "./components/HelmetDetection";
+import TripleRiderDetection from "./components/TripleRiderDetection";
 import {
   AlertTriangle,
   BarChart3,
@@ -96,7 +97,7 @@ type AnalysisResult = {
 };
 
 function App() {
-  const [tab, setTab] = useState<"traffic" | "helmet">("traffic");
+  const [tab, setTab] = useState<"traffic" | "helmet" | "triple">("traffic");
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isAnalyzed, setIsAnalyzed] = useState(false);
@@ -207,8 +208,84 @@ function App() {
     }
   }
 
+  if (tab === "helmet") {
+    return (
+      <div>
+        <nav className="border-b border-slate-100 bg-white px-6 flex gap-1 py-2">
+          <button
+            onClick={() => setTab("traffic")}
+            className="px-4 py-1.5 rounded-md text-sm text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+          >
+            Traffic Analysis
+          </button>
+          <button
+            onClick={() => setTab("helmet")}
+            className="px-4 py-1.5 rounded-md text-sm font-medium bg-slate-900 text-white"
+          >
+            Helmet Detection
+          </button>
+          <button
+            onClick={() => setTab("triple")}
+            className="px-4 py-1.5 rounded-md text-sm text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+          >
+            Triple Rider & Phone
+          </button>
+        </nav>
+        <HelmetDetection />
+      </div>
+    );
+  }
+
+  if (tab === "triple") {
+    return (
+      <div>
+        <nav className="border-b border-slate-100 bg-white px-6 flex gap-1 py-2">
+          <button
+            onClick={() => setTab("traffic")}
+            className="px-4 py-1.5 rounded-md text-sm text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+          >
+            Traffic Analysis
+          </button>
+          <button
+            onClick={() => setTab("helmet")}
+            className="px-4 py-1.5 rounded-md text-sm text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+          >
+            Helmet Detection
+          </button>
+          <button
+            onClick={() => setTab("triple")}
+            className="px-4 py-1.5 rounded-md text-sm font-medium bg-slate-900 text-white"
+          >
+            Triple Rider & Phone
+          </button>
+        </nav>
+        <TripleRiderDetection />
+      </div>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <nav className="border-b border-slate-100 bg-white px-6 flex gap-1 py-2">
+        <button
+          onClick={() => setTab("traffic")}
+          className="px-4 py-1.5 rounded-md text-sm font-medium bg-slate-900 text-white"
+        >
+          Traffic Analysis
+        </button>
+        <button
+          onClick={() => setTab("helmet")}
+          className="px-4 py-1.5 rounded-md text-sm text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+        >
+          Helmet Detection
+        </button>
+        <button
+          onClick={() => setTab("triple")}
+          className="px-4 py-1.5 rounded-md text-sm text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+        >
+          Triple Rider & Phone
+        </button>
+      </nav>
       <section className="border-b border-border bg-white">
         <div className="mx-auto flex max-w-7xl flex-col gap-10 px-5 py-8 md:px-8 lg:flex-row lg:items-center lg:py-12">
           <div className="flex-1 space-y-5">
