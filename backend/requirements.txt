@@ -1,3 +1,9 @@
 fastapi
 uvicorn
 python-multipart
+ultralytics
+opencv-python-headless
+pytesseract
+easyocr
+Pillow
+requests
