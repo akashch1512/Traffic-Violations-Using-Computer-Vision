@@ -21,7 +21,11 @@ type InferenceResult = {
 const CLASS_COLORS: Record<string, string> = {
   phone: "#ef4444",
   "using phone": "#ef4444",
+  mobile: "#ef4444",
+  "using_mobile": "#ef4444",
   "triple riding": "#f59e0b",
+  triple: "#f59e0b",
+  "more_than_two_persons": "#f59e0b",
   rider: "#3b82f6",
   default: "#8b5cf6",
 };
@@ -140,11 +144,13 @@ export default function TripleRiderDetection() {
 
   const phoneCount =
     result?.predictions.filter((p) =>
-      p.class.toLowerCase().includes("phone")
+      p.class.toLowerCase().includes("phone") || p.class.toLowerCase().includes("mobile")
     ).length ?? 0;
   const tripleCount =
     result?.predictions.filter((p) =>
-      p.class.toLowerCase().includes("triple") || p.class.toLowerCase().includes("3")
+      p.class.toLowerCase().includes("triple") || 
+      p.class.toLowerCase().includes("3") ||
+      p.class.toLowerCase().includes("more_than_two")
     ).length ?? 0;
 
   return (

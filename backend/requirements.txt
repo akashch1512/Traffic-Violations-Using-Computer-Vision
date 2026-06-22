@@ -7,3 +7,8 @@ pytesseract
 easyocr
 Pillow
 requests
+# PaddleOCR – set USE_PADDLE = True in license_plate.py to activate
+# switch back to EasyOCR anytime with USE_PADDLE = False
+# NOTE: pinned to 2.x – PaddleOCR 3.x has a broken oneDNN backend on CPU Linux
+paddlepaddle==2.6.2
+paddleocr==2.9.1
